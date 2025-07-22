@@ -9,4 +9,12 @@ This project uses:
 - WinUI
 - WinAppSDK 1.7
 
+Detailed instructions are included in the 
+
+/Documents/Notes.txt in each project.
+
+I'll repost them here:
+
+
+
 
