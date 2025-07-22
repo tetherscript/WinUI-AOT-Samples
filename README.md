@@ -11,7 +11,7 @@ Victory.  Sweet victory.
 Here's the executable of the AOTSample project, installed via it's .msix.
 <img alt="image" src="https://github.com/user-attachments/assets/325895d4-ec6c-45ec-9109-0215fc36ef9a" />
 
-And here's the executable of the AOTSampleUnpackged prject, just waiting to be including in an installer (Inno, anyone?)
+And here's the executable of the AOTSampleUnpackged prject, just waiting to be included in an installer (Inno, anyone?)
 <img alt="image" src="https://github.com/user-attachments/assets/1af2c612-2157-4391-97eb-052e01a3e744" />
 
 This project uses:
