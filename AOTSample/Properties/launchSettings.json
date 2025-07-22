@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "AOTSample (Package)": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

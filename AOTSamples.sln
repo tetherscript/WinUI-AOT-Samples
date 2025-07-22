@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOTSampleUnpackaged", "AOTSampleUnpackaged\AOTSampleUnpackaged.csproj", "{62990CD1-D41F-F6F1-955B-CA5C57C42FD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOTSample", "AOTSample\AOTSample.csproj", "{667F6439-464A-7FF5-AF68-6FAEA33C7127}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62990CD1-D41F-F6F1-955B-CA5C57C42FD8}.Debug|x64.ActiveCfg = Debug|x64
+		{62990CD1-D41F-F6F1-955B-CA5C57C42FD8}.Debug|x64.Build.0 = Debug|x64
+		{62990CD1-D41F-F6F1-955B-CA5C57C42FD8}.Release|x64.ActiveCfg = Release|x64
+		{62990CD1-D41F-F6F1-955B-CA5C57C42FD8}.Release|x64.Build.0 = Release|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Debug|x64.ActiveCfg = Debug|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Debug|x64.Build.0 = Debug|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Debug|x64.Deploy.0 = Debug|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Release|x64.ActiveCfg = Release|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Release|x64.Build.0 = Release|x64
+		{667F6439-464A-7FF5-AF68-6FAEA33C7127}.Release|x64.Deploy.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAC0F2DB-4F31-4E93-8A7A-B2E8CC2F3605}
+	EndGlobalSection
+EndGlobal

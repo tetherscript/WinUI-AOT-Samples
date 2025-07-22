@@ -1,0 +1,46 @@
+﻿CREATES AN AOT UNPACKAGED EXECUTABLE for .Net8/WinUI/WinAppSDK1.7/c#/Win-x64 using VS2022
+
+Note: We are using the free JetBrains dotPeek app to decompile .exe's back to c# source.
+
+----------------------------------------------------------
+
+DEBUGGING AS NON-AOT
+- You can debug like usual as it builds a non-AOT AOTSampleUnpackaged.exe in bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64.
+    You can double-click it and it runs.  But it can be decompiled back to source. Copy the AOTSampleUnpackaged.exe and AOTSampleUnpackaged.dll
+    To it's own folder and check it in dotpeek.  If you don't copy it to it's own folder, dotPeek crashes.
+
+----------------------------------------------------------
+
+PUBLISHING AS AOT
+- Run by publish wizard or powershell gives a an AOT executable in \bin\publish\win-x64.
+- Just double-click on the published AOTSampleUnpackaged.exe and it runs.
+- Examine that AOTSampleUnpackaged.exe in dotPeek and it shows as unmanaged and it can't decompile the IL, since none exist.
+- The AOT executable can still be decompiled with difficulty, but at least they don't get your full c# source code.
+- Publishing by either method also creates a non-AOT \bin\Release\net8.0-windows10.0.22621.0\win-x64 build, not sure what this is used for.
+- Including .pdb's make a decompiling efforts easier, even if it is AOT, so you can turn it off if needed in .csproj.  This setting only
+    works with the the publish wizard. 
+    In .csproj
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+
+    The powershell command line creates the .pdb despite telling it not to with -p:DebugType=None -p:DebugSymbols=false
+    so that must be a bug.  You'll need to manually delete that .pdb.
+
+POWERSHELL PUBLISH
+Note: it is forced to use .NetSDK 8.0.404 due to global.json setting, otherwise it will try to use .Net9 if installed.
+Note: In powershell, go to the root folder of this project and run:
+
+dotnet publish --verbosity detailed AOTSampleUnpackaged.csproj -c Release -r win-x64 -p:PublishProfile=win-x64 -p:DebugType=None -p:DebugSymbols=false /flp:LogFile="bin\publish\win-x64\publish.log"
+
+USING THE PUBLISH WIZARD
+Right-click on the project in solution explorer, select Publish. Works fine, but doesn't give a .log file.
+
+----------------------------------------------------------
+
+WHAT ARE THESE TWO FILES?
+MddBootstrapAutoInitializer.cs
+WindowsAppSDK-VersionInfo.cs
+  
+When you enable some of the critical AOT .csproj settings, these files are linked to your project.  If you try to delete them,
+  they are added as -remove's in .csproj, but it doesn't seem to affect publishing. So it's a mystery.
+
