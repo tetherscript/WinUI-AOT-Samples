@@ -13,8 +13,5 @@ Detailed instructions are included in the
 
 /Documents/Notes.txt in each project.
 
-I'll repost them here:
-
-
-
+View the Wiki for more info.
 
