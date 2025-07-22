@@ -8,6 +8,7 @@ So now i can compile packaged and unpackaged AOT code, so it can't be decompiled
 
 Victory.  Sweet victory.
 
+Here's the executable of the AOTSample project, installed via it's .msix.
 <img alt="image" src="https://github.com/user-attachments/assets/325895d4-ec6c-45ec-9109-0215fc36ef9a" />
 
 This project uses:
