@@ -21,6 +21,10 @@ This project uses:
 - WinUI
 - WinAppSDK 1.7
 
+I hope to add some additional projects that show what kind of code works and doesn't work when compiling AOT.  There's a bunch of gotcha's, noted here, although they really don't talk about WinUI specifically:
+
+https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=windows%2Cnet8
+
 Detailed instructions are included in the 
 
 /Documents/Notes.txt in each project.
