@@ -361,3 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AOTSampleCombined/Redistributables/WindowsAppRuntimeInstall-x64.exe
+/AOTSampleCombined/Installers/Unpackaged/win-x64/AOTCombined.exe
+/AOTSampleCombined/Installers/Unpackaged/win-x64/Microsoft.Web.WebView2.Core.dll
+/AOTSampleCombined/Installers/Unpackaged/win-x64/Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll
+/AOTSampleCombined/Installers/Unpackaged/win-x64/Microsoft.WindowsAppRuntime.Bootstrap.dll
+/AOTSampleCombined/Installers/Unpackaged/win-x64/publish.log
+/AOTSampleCombined/Installers/Unpackaged/win-x64/resources.pri
+/AOTSampleCombined/Installers/Unpackaged/win-x64/WebView2Loader.dll
+/AOTSampleCombined/Installers/Unpackaged/win-x64/Assets/app1.ico
+/AOTSampleCombined/Redist/WindowsAppRuntimeInstall-x64.exe
