@@ -1,5 +1,7 @@
 ﻿CREATE AOT PACKAGED AND UNPACKAGED INSTALLATION FILES
 
+Notably, you won't use the publish or packagage and publish wizards.  There are no .pubxmls.
+
 1) This project debugs in unpackaged mode, but you can still create AOT packaged and AOT unpackaged installers.  
     The benefit of debugging in unpackaged mode is that you don't have to worry about the debug app package being installed
     on your pc, which you will later need to remove prior to running the release packaged installer.
@@ -74,6 +76,7 @@ PUBLISHING AS PACKAGED - You get an .msix installer and other files.
 Clear
 msbuild .\AOTCombined.csproj `
 /t:Rebuild `
+/p:RuntimeIdentifier=win-x64 `
 /p:Configuration=Release `
 /p:GenerateAppxPackageOnBuild=true `
 /p:AppxPackageSigningEnabled=true `
@@ -82,7 +85,7 @@ msbuild .\AOTCombined.csproj `
 /p:GenerateTestArtifacts=false `
 /p:WindowsPackageType=MSIX `
 /p:AppxBundle=Never `
-/p:PackageCertificateThumbprint="mycertthumbprint" `
+/p:PackageCertificateThumbprint="e28b9fae39bfaffc9446555eea029d5bcf49daa0" `
 /p:UapAppxPackageBuildMode=SideloadOnly `
 /p:AppxPackageDir=".\Installers\Packaged\win-x64\win-x64" `
 /fileLogger `
