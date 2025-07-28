@@ -17,7 +17,12 @@ public partial class App : Application
         // .NET domain‑level exceptions
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         // Unobserved Task exceptions
-        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+        TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+    }
+
+    private void TaskScheduler_UnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        Debug.WriteLine($"[WinUI TaskScheduler_UnobservedTaskException] {e.Exception.Message}");
     }
 
     private void CurrentDomain_UnhandledException(object sender, System.UnhandledExceptionEventArgs e)
@@ -31,11 +36,7 @@ public partial class App : Application
         e.Handled = true;
     }
 
-    private void OnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
-    {
-        Debug.WriteLine($"[Task UnobservedException] {e.Exception.Message}");
-        e.SetObserved();
-    }
+
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         if (!TPackageHelper.IsRunningPackaged())
@@ -59,5 +60,5 @@ public partial class App : Application
         m_window.Activate();
     }
 
-    private Window m_window;
+    private Window? m_window;
 }

@@ -39,11 +39,15 @@ msbuild .\AOTCombined.csproj `
   /p:SelfContained=true `
   /p:PublishDir=Installers\Unpackaged\win-x64\ `
   /p:TargetFramework=net8.0-windows10.0.22621.0 `
+  /verbosity:quiet `
   /fileLogger `
+  /noWarn:NETSDK1198 `
   "/flp:LogFile=Installers\Unpackaged\publish.log;Verbosity=normal"
 Remove-Item -Path ".\Installers\Unpackaged\win-x64\*.pdb" -Recurse -Force
 
 <<< SCRIPT END >>>>
+
+The /noWarn:NETSDK1198 suppresses a warning about the pubxml missing, which is by design.
 
 Resulting in
 
@@ -81,6 +85,7 @@ msbuild .\AOTCombined.csproj `
 /p:GenerateAppxPackageOnBuild=true `
 /p:AppxPackageSigningEnabled=true `
 /p:AppxPackageSigningTimestampDigestAlgorithm=SHA512 `
+/verbosity:quiet `
 /p:AppxSymbolPackageEnabled=false `
 /p:GenerateTestArtifacts=false `
 /p:WindowsPackageType=MSIX `

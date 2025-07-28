@@ -10,7 +10,7 @@ public static class TPackageHelper
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern int GetCurrentPackageFullName(
         ref int packageFullNameLength,
-        StringBuilder packageFullName);
+        StringBuilder? packageFullName);
 
     /// <summary>
     /// True if the current process is running inside an MSIX package.

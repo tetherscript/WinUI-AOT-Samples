@@ -15,7 +15,8 @@ public sealed partial class MainWindow : Window
         if (!TPackageHelper.IsRunningPackaged())
         {
             // Load the icon from file
-            string ExePath = Path.Combine(AppContext.BaseDirectory, TAppInfo.GetExeNameViaCommandLine());
+            string ExeName = TAppInfo.GetExeNameViaCommandLine();
+            string ExePath = Path.Combine(AppContext.BaseDirectory, ExeName);
             string? InstallationPath = Path.GetDirectoryName(ExePath);
             if (InstallationPath is not null)
             {
