@@ -1,0 +1,127 @@
+﻿CREATE AOT PACKAGED AND UNPACKAGED INSTALLATION FILES
+
+Notably, you won't use the publish or packagage and publish wizards.  There are no .pubxmls.
+
+1) This project debugs in unpackaged mode, but you can still create AOT packaged and AOT unpackaged installers.  
+    The benefit of debugging in unpackaged mode is that you don't have to worry about the debug app package being installed
+    on your pc, which you will later need to remove prior to running the release packaged installer.
+2) We want or app to be compiled to AOT because it starts faster, cannot be trivially decompiled back into c# source,
+    and in the case of a packaged app, includes the necessary runtimes.
+3) Don't use the 'Publish' and 'Package and Publish' wizards.  Instead, use the following scripts in the 
+    developer powershell only. This gives you build logs and allows us to do this all in one app.
+4) We are confirming AOT compilation using the free JetBrains dotPeek.
+
+----------------------------------------------------------
+
+DEBUGGING
+1) You can debug like usual as it builds a non-AOT AOTCombined.exe in bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64.
+    You can double-click it and it runs.  But it can be decompiled back to source. Copy the AOTSampleUnpackaged.exe and AOTSampleUnpackaged.dll
+    To it's own folder and check it in dotpeek.  If you don't copy it to it's own folder, dotPeek crashes.
+
+----------------------------------------------------------
+
+PUBLISHING AS UNPACKAGED - You get an .exe and some other files.
+
+1) You'll need to install the WindowsAppRuntimeInstall-x64.exe before running the app.
+    https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
+    Grab the 'Redistributable' 'WindowsAppRuntimeInstall-x64.exe' and put it in your /Redist folder.
+    Have your installer app to install this redistributable before runnning the app.
+2) Update your Version in the .csproj.  It won't increment it automatically.
+3) Run this in the project folder in 'Developer Powershell for VS 2022':
+
+<<< SCRIPT START >>>>
+
+Clear
+msbuild .\AOTCombinedTests.csproj `
+  /t:Clean,Publish `
+  /p:Configuration=Release `
+  /p:RuntimeIdentifier=win-x64 `
+  /p:SelfContained=true `
+  /p:PublishDir=Installers\Unpackaged\win-x64\ `
+  /p:TargetFramework=net8.0-windows10.0.22621.0 `
+  /verbosity:quiet `
+  /fileLogger `
+  /noWarn:NETSDK1198 `
+  "/flp:LogFile=Installers\Unpackaged\publish.log;Verbosity=normal"
+Remove-Item -Path ".\Installers\Unpackaged\win-x64\*.pdb" -Recurse -Force
+
+<<< SCRIPT END >>>>
+
+The /noWarn:NETSDK1198 suppresses a warning about the pubxml missing, which is intended since we don't require a pubxml.
+
+Resulting in
+
+Installers
+    UnPackaged
+        publish.log
+        win-x64
+            AOTCombinedTests.exe and it's dependencies
+                Redist
+                    WindowsAppRuntimeInstall-x64.exe
+
+4) Take a look at that AOTCombined.exe in dotPeek.  It's unmanaged, which is what we want by using AOT.
+5) Those are all the files you need to install your AOTCombined on another PC. 
+
+
+
+----------------------------------------------------------
+
+
+
+PUBLISHING AS PACKAGED - You get an .msix installer and other files.
+
+1) The Windows App Runtime is included in the installer files and it will install it if needed.
+2) Update your Identity.Version in Package.appmanifest.  It won't increment it automatically.
+3) You'll need to include your certificate thumbprint so it can sign it.
+4) Run this script in the project folder in 'Developer Powershell for VS 2022':
+
+<<< SCRIPT START >>>>
+
+Clear
+msbuild .\AOTCombinedTests.csproj `
+/t:Rebuild `
+/p:RuntimeIdentifier=win-x64 `
+/p:Configuration=Release `
+/p:GenerateAppxPackageOnBuild=true `
+/p:AppxPackageSigningEnabled=true `
+/p:AppxPackageSigningTimestampDigestAlgorithm=SHA512 `
+/verbosity:quiet `
+/p:AppxSymbolPackageEnabled=false `
+/p:GenerateTestArtifacts=false `
+/p:WindowsPackageType=MSIX `
+/p:AppxBundle=Never `
+/p:PackageCertificateThumbprint="e28b9fae39bfaffc9446555eea029d5bcf49daa0" `
+/p:UapAppxPackageBuildMode=SideloadOnly `
+/p:AppxPackageDir=".\Installers\Packaged\win-x64\win-x64" `
+/fileLogger `
+"/fileLoggerParameters:LogFile=.\Installers\Packaged\win-x64\build.log;Verbosity=normal"
+
+<<< SCRIPT END >>>>
+
+Resulting in
+
+Installers
+    Packaged
+        build.log
+        win-x64
+            win-x64AOTCombined_1.0.0.0_x64_Test <-- or whatever version
+                Add-AppDevPackage.resources
+                Dependencies
+                    arm64 <-- don't need this
+                    x86 <-- don't need this
+                    win32 <-- don't need this
+                    x64 <-- keep this
+
+
+5) You'll see a \Dependencies\x64 subfolder containing the x64 redistributable. 
+    Remove the other non-x64 dependency folders as we are AOT x64, so those aren't needed.
+6) For fun, zip the folder.  It's only 28 MB.
+7) run the .msix to install, then find out where it installed on your system by entering in Powershell: 
+    
+    Get-AppxPackage | Select-Object Name, PackageFullName, InstallLocation
+
+    >>AOTCombined  AOTCombined_1.0.0.0_x64__et3p35edsb9cp  C:\Program Files\WindowsApps\AOTCombined_1.0.0.0_x64__et3p35edsb9cp
+
+8) Open the folder in dotPeek and you will it's unmanaged, which is what we want by using AOT.
+10) Open the folder in file explorer to see what it installed.  Double-clicking the won't launch it though.
+    Use the shortcut instead.

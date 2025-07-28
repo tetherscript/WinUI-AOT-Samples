@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{02EA68
 		Common\TPackageHelper.cs = Common\TPackageHelper.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOTCombinedTests", "AOTSampleCombinedTests\AOTCombinedTests.csproj", "{EC5B6E18-0D18-8D6F-1C80-E5F75290181E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -38,6 +40,10 @@ Global
 		{24FFA84E-75AF-4A22-1798-95B580BB7752}.Release|x64.ActiveCfg = Release|x64
 		{24FFA84E-75AF-4A22-1798-95B580BB7752}.Release|x64.Build.0 = Release|x64
 		{24FFA84E-75AF-4A22-1798-95B580BB7752}.Release|x64.Deploy.0 = Release|x64
+		{EC5B6E18-0D18-8D6F-1C80-E5F75290181E}.Debug|x64.ActiveCfg = Debug|x64
+		{EC5B6E18-0D18-8D6F-1C80-E5F75290181E}.Debug|x64.Build.0 = Debug|x64
+		{EC5B6E18-0D18-8D6F-1C80-E5F75290181E}.Release|x64.ActiveCfg = Release|x64
+		{EC5B6E18-0D18-8D6F-1C80-E5F75290181E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

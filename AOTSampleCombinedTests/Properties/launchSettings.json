@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AOTCombined (Unpackaged)": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
