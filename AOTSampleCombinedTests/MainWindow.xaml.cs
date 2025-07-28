@@ -31,23 +31,14 @@ public sealed partial class MainWindow : Window
                     TNativeMethods.SendMessage(MainWindowHandle, TNativeMethods.WM_SETICON, new IntPtr(1), hIcon); // Large icon
                 }
             }
-            myButton.Content = "Running as Unpackaged" + Environment.NewLine + "Click me";
+            Title = "AOTCombinedTests: Running as Unpackaged" + Environment.NewLine + "Click me";
         }
         else
         {
-            myButton.Content = "Running as Packaged" + Environment.NewLine + "Click me";
+            Title = "AOTCombinedTests: Running as Packaged" + Environment.NewLine + "Click me";
         }
      
     }
-
-    private void myButton_Click(object sender, RoutedEventArgs e)
-    {
-        myButton.Content = "Clicked";
-    }
-
-
-
-
 
 }
 

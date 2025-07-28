@@ -8,14 +8,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+    <Grid
+        HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
         
-        <Button x:Name="myButton" HorizontalContentAlignment="Center" Width="200" Click="myButton_Click">Click Me</Button>
-
-        <TabView>
+        <TabView
+            CanReorderTabs="False"
+            CanTearOutTabs="False"
+            CanDragTabs="False"
+            Grid.Row="1">
             <TabView.TabItems>
                 <TabViewItem
-                    Header="Document 0">
+                    Header="AdvancedCollectionView">
                     <TabViewItem.IconSource>
                         <SymbolIconSource
                             Symbol="Placeholder" />
@@ -24,5 +37,7 @@
                 </TabViewItem>
             </TabView.TabItems>
         </TabView>
-    </StackPanel>
+        
+    </Grid>
+
 </Window>

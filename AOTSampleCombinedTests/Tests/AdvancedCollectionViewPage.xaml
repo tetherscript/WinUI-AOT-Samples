@@ -35,6 +35,7 @@
         </DataTemplate>
     </Page.Resources>
     <Grid
+        Margin="12,12,12,12"
         ColumnSpacing="12"
         RowSpacing="8">
         <Grid.ColumnDefinitions>
@@ -46,8 +47,13 @@
                 Height="Auto" />
             <RowDefinition
                 Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Text="Based on the example in WIndows Community Toolkit Gallery.  Xaml is unchanged, but .cs required two annotations." />
         <StackPanel
             Grid.Column="0"
             Grid.ColumnSpan="2"

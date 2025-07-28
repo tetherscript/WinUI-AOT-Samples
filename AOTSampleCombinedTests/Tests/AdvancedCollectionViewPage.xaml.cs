@@ -12,10 +12,12 @@ public sealed partial class AdvancedCollectionViewPage : Page
 
     public AdvancedCollectionView? CollectionView { get; private set; }
 
+    //ANNOTATION #1: AOT executable crashes without this.  Tells the trimmer “when you see this entry point, also pull in these members.”
     [DynamicDependency(
         DynamicallyAccessedMemberTypes.PublicProperties
         | DynamicallyAccessedMemberTypes.PublicConstructors,
         typeof(Employee))]
+    //
     public AdvancedCollectionViewPage()
     {
         this.InitializeComponent();
@@ -56,10 +58,12 @@ public sealed partial class AdvancedCollectionViewPage : Page
         CollectionView = acv;
     }
 
+    //ANNOTATION #2: we'll suppress this warning since we know we handled it in the page constructor
     [UnconditionalSuppressMessage(
     "Trimming",
     "IL2026:RequiresUnreferencedCode",
     Justification = "Employee metadata is preserved via DynamicDependency on the constructor.")]
+    //
     private AdvancedCollectionView CreateAdvancedCollectionView(ObservableCollection<Employee> list)
     {
         return new(list);

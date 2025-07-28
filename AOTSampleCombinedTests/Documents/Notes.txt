@@ -14,7 +14,7 @@ Notably, you won't use the publish or packagage and publish wizards.  There are 
 ----------------------------------------------------------
 
 DEBUGGING
-1) You can debug like usual as it builds a non-AOT AOTCombined.exe in bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64.
+1) You can debug like usual as it builds a non-AOT AOTCombinedTests.exe in bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64.
     You can double-click it and it runs.  But it can be decompiled back to source. Copy the AOTSampleUnpackaged.exe and AOTSampleUnpackaged.dll
     To it's own folder and check it in dotpeek.  If you don't copy it to it's own folder, dotPeek crashes.
 
@@ -59,8 +59,8 @@ Installers
                 Redist
                     WindowsAppRuntimeInstall-x64.exe
 
-4) Take a look at that AOTCombined.exe in dotPeek.  It's unmanaged, which is what we want by using AOT.
-5) Those are all the files you need to install your AOTCombined on another PC. 
+4) Take a look at that AOTCombinedTests.exe in dotPeek.  It's unmanaged, which is what we want by using AOT.
+5) Those are all the files you need to install your AOTCombinedTests on another PC. 
 
 
 
@@ -104,7 +104,7 @@ Installers
     Packaged
         build.log
         win-x64
-            win-x64AOTCombined_1.0.0.0_x64_Test <-- or whatever version
+            win-x64AOTCombinedTests_1.0.0.0_x64_Test <-- or whatever version
                 Add-AppDevPackage.resources
                 Dependencies
                     arm64 <-- don't need this
@@ -120,7 +120,7 @@ Installers
     
     Get-AppxPackage | Select-Object Name, PackageFullName, InstallLocation
 
-    >>AOTCombined  AOTCombined_1.0.0.0_x64__et3p35edsb9cp  C:\Program Files\WindowsApps\AOTCombined_1.0.0.0_x64__et3p35edsb9cp
+    >>AOTCombinedTests  AOTCombinedTests_1.0.0.0_x64__et3p35edsb9cp  C:\Program Files\WindowsApps\AOTCombined_1.0.0.0_x64__et3p35edsb9cp
 
 8) Open the folder in dotPeek and you will it's unmanaged, which is what we want by using AOT.
 10) Open the folder in file explorer to see what it installed.  Double-clicking the won't launch it though.
